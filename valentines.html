@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Be My Valentine Romzz ❤️</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Comic Sans MS", cursive;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      border: 3px solid red;
+      border-radius: 25px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      z-index: 2;
+    }
+
+    h1 {
+      color: red;
+      font-size: 2.4em;
+    }
+
+    p {
+      font-size: 1.2em;
+      color: black;
+      min-height: 30px;
+    }
+
+    .buttons {
+      margin-top: 30px;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      position: relative;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform 0.2s, font-size 0.2s;
+    }
+
+    #yesBtn {
+      background-color: red;
+      color: white;
+      border: none;
+    }
+
+    #noBtn {
+      background-color: white;
+      color: black;
+      border: 2px solid black;
+      position: relative;
+    }
+
+    /* ❤️ HEARTS */
+    .heart {
+      position: fixed;
+      font-size: 26px;
+      animation: floatUp 4s linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-400px) scale(1.4);
+        opacity: 0;
+      }
+    }
+
+    .final {
+      text-align: center;
+      color: red;
+      font-size: 3em;
+      font-family: "Comic Sans MS", cursive;
+      animation: pop 0.6s ease-in-out;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.5); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card" id="card">
+    <h1>Will you be my Valentine Romzz? ❤️</h1>
+    <p id="message">Be honest 😌</p>
+
+    <div class="buttons">
+      <button id="yesBtn">YES ❤️</button>
+      <button id="noBtn">NO 🖤</button>
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const message = document.getElementById("message");
+    const card = document.getElementById("card");
+
+    let yesSize = 18;
+
+    const messages = [
+      "That was rude Cousin!!🖤",
+      "Be serious right now, as'dlali lana 🤨",
+      "Wrong button ❤️",
+      "Think again 😌",
+      "You know you want to say YES ❤️"
+    ];
+
+    noBtn.addEventListener("click", () => {
+      const x = Math.random() * (window.innerWidth - 120);
+      const y = Math.random() * (window.innerHeight - 120);
+
+      noBtn.style.position = "fixed";
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+
+      message.textContent = messages[Math.floor(Math.random() * messages.length)];
+
+      yesSize += 2;
+      yesBtn.style.fontSize = yesSize + "px";
+    });
+
+    yesBtn.addEventListener("click", () => {
+      document.body.innerHTML = `
+        <div class="final">
+          YAYYYY ❤️🤍❤️<br>
+          You’re officially my Valentine Mzala! 🥰🥰🥰
+        </div>
+      `;
+
+      for (let i = 0; i < 80; i++) {
+        createHeart();
+      }
+    });
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.textContent = Math.random() > 0.5 ? "❤️" : "🤍";
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      heart.style.top = window.innerHeight + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 4000);
+    }
+  </script>
+
+</body>
+</html>
